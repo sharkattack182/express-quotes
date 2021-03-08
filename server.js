@@ -78,7 +78,14 @@ app.get("/", function(req, res) {
     
     // Update a quote.
     app.put("/api/quotes/:id", function(req, res) {
-    
+      connection.query("UPDATE quotes SET author = ?, quote = ? WHERE id = ?", [req.body.author, req.body.quote, req.params.id], function(err,result) {
+        if(err) {
+          return res.status(500).end()
+        } else if(result.affectedRows === 0) {
+          return res.status(404).end();
+        } 
+        res.status(200).end();
+      })
     });
     
 
