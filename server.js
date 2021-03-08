@@ -43,12 +43,18 @@ app.get("/", function(req, res) {
     
     // Serve single-quote.handlebars, populated with data that corresponds to the ID in the route URL.
     app.get("/:id", function(req, res) {
+        connection.query("SELECT * FROM quotes WHERE id = ?", [req.params.id], function(err, data) {
+            if(err) {
+                return res.status(500).end();
+            }
 
+            res.render("single-quote", data[0])
+        })
     });
     
     // Create a new quote using the data posted from the front-end.
     app.post("/api/quotes", function(req, res) {
-    
+
     });
     
     // Delete a quote based off of the ID in the route URL.
