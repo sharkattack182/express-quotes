@@ -31,7 +31,30 @@ connection.connect(function(err) {
   console.log("connected as id " + connection.threadId);
 });
 
-
+// Serve index.handlebars to the root route, populated with all quote data.
+app.get("/", function(req, res) {
+    });
+    
+    // Serve single-quote.handlebars, populated with data that corresponds to the ID in the route URL.
+    app.get("/:id", function(req, res) {
+    
+    });
+    
+    // Create a new quote using the data posted from the front-end.
+    app.post("/api/quotes", function(req, res) {
+    
+    });
+    
+    // Delete a quote based off of the ID in the route URL.
+    app.delete("/api/quotes/:id", function(req, res) {
+    
+    });
+    
+    // Update a quote.
+    app.put("/api/quotes/:id", function(req, res) {
+    
+    });
+    
 
 
 
