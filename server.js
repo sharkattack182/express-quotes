@@ -54,7 +54,12 @@ app.get("/", function(req, res) {
     
     // Create a new quote using the data posted from the front-end.
     app.post("/api/quotes", function(req, res) {
-
+      connection.query("INSERT INTO quotes (author, quote) VALUES (?,?)", [req.body.author, req.body.quote], function(err, result) {
+        if(err) {
+          return res.status(500).end();
+        }
+        res.json({ id: result.insertId })
+      })
     });
     
     // Delete a quote based off of the ID in the route URL.
